@@ -17,11 +17,11 @@ def init_db():
       conn.commit()
       conn.close()
 
-def save_password(website, username, password, key):
+def save_password(website, username, password, pm_login_id, key):
       encrypted_password = encrypt_message(password, key)
       conn = sqlite3.connect('passwords.db')
       cursor = conn.cursor()
-      cursor.execute('INSERT OR REPLACE INTO passwords (website, username, password) VALUES (?, ?, ?)', (website, username, encrypted_password))
+      cursor.execute('INSERT OR REPLACE INTO passwords (website, username, password, login_id) VALUES (?, ?, ?, ?)', (website, username, encrypted_password, pm_login_id))
       conn.commit()
       conn.close()
 
